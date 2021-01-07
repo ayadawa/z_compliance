@@ -1,0 +1,11 @@
+---
+- name: zOS Basic
+  hosts: server
+  tasks:
+  # ------------------------- #
+  - name: Change Inactivity Timeout
+    shell: |
+            tsocmd setropts inactive\(30\)
+    register: change_inactivity_timeout
+  - debug:
+      msg: "{{ change_inactivity_timeout }}"

@@ -1,0 +1,25 @@
+---
+- name: Hello World
+  hosts: server
+  tasks:
+  # ------------------------- #
+  - name: Going to compliance folder
+    shell: |
+        cd $HOME/Projects/zCompliance
+    register: cd_to_compliance
+  - debug:
+      msg: "{{ cd_to_compliance }}"
+  # ------------------------- #
+  - name: Running about zfacts
+    shell: |
+        /usr/lpp/IBM/cyp/v3r8/pyz/bin/python3  -m zfacts about
+    register: about_zfacts
+  - debug:
+      msg: "{{ about_zfacts }}"
+  # ------------------------- #
+  - name: Collecting zfacts
+    shell: |
+        /usr/lpp/IBM/cyp/v3r8/pyz/bin/python3  -m zfacts getfacts
+    register: getting_zfacts
+  - debug:
+      msg: "{{ getting_zfacts }}"
